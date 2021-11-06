@@ -32,7 +32,7 @@ public class JeuCombat : Jeu
     // Start is called before the first frame update
     void Start()
     {
-        StartGame();
+       // StartGame();
     }
 
     // Update is called once per frame
@@ -50,8 +50,8 @@ public class JeuCombat : Jeu
 
     public override void StartGame()
     {
-        SpawnPrefab();
         IsActive = true;
+        SpawnPrefab();
     }
 
     private void SpawnPrefab()
@@ -96,7 +96,7 @@ public class JeuCombat : Jeu
         if (NbToursFait >= nbTourAFaire)
         {
             ResetGame();
-            //Fin du jeu
+            gameManager.EndGame(this);
             print("fin du jeu");
         }
         else

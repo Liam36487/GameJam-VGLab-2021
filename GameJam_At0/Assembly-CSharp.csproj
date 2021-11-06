@@ -57,6 +57,7 @@
     <Compile Include="Assets\Jeux\Inputs\CustomInput.cs" />
     <Compile Include="Assets\Jeux\JeuCombat.cs" />
     <Compile Include="Assets\Jeux\Jeu.cs" />
+    <Compile Include="Assets\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
