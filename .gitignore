@@ -1,14 +1,14 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild
-/[Bb]uilds/
-/[Ll]ibrary/
+GameJam_At0/[Tt]emp/
+GameJam_At0/[Oo]bj/
+GameJam_At0/[Bb]uild
+GameJam_At0/[Bb]uilds/
+GameJam_At0/[Ll]ibrary/
 sysinfo.txt
 *.stackdump
-/Assets/AssetStoreTools*
+GameJam_At0/Assets/AssetStoreTools*
 *.apk
 *.unitypackage
  
@@ -33,13 +33,13 @@ sysinfo.txt
 # ============ #
 # OS generated #
 # ============ #
-.DS_Store*
-._*
-.Spotlight-V100
-.Trashes
+GameJam_At0/.DS_Store*
+GameJam_At0/._*
+GameJam_At0/.Spotlight-V100
+GameJam_At0/.Trashes
 Icon?
 ehthumbs.db
-[Tt]humbs.db
-[Dd]esktop.ini
+GameJam_At0/[Tt]humbs.db
+GameJam_At0/[Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
