@@ -58,8 +58,9 @@
     <Compile Include="Assets\Jeux\Inputs\CustomInput.cs" />
     <Compile Include="Assets\Jeux\Jeu.cs" />
     <Compile Include="Assets\Jeux\Inputs\AppuiInput.cs" />
-    <Compile Include="Assets\Jeux\JeuTir.cs" />
     <Compile Include="Assets\Jeux\Inputs\ClicInput.cs" />
+    <Compile Include="Assets\Jeux\JeuTir.cs" />
+    <Compile Include="Assets\Jeux\JeuSport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

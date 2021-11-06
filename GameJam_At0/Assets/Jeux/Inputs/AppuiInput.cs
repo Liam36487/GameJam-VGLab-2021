@@ -7,6 +7,9 @@ public class AppuiInput : CustomInput
 {
     public string KeyCode;
 
+    public Image Image;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +25,10 @@ public class AppuiInput : CustomInput
         KeyCode = keyCode;
         Text textInput = gameObject.GetComponentInChildren<Text>();
         textInput.text = KeyCode.ToUpper();
+    }
+
+    public void Recolor(Color color)
+    {
+        GetComponent<Image>().color = color;
     }
 }

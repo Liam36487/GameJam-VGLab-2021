@@ -284,7 +284,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 123999226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1006458521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartJeu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1595200534}
+          m_ObjectArgumentAssemblyTypeName: Jeu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &123999226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,6 +1301,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229780459}
   m_CullTransparentMesh: 1
+--- !u!1 &1595200532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1595200533}
+  - component: {fileID: 1595200534}
+  m_Layer: 0
+  m_Name: JeuSport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1595200533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595200532}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -641.3498, y: -374.7618, z: -7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2138282825}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1595200534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595200532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873083c17e7205d4daeede5ececc570d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1006458521}
+  IsActive: 0
+  PrefabInputToSpam: {fileID: 1769196509172746952, guid: 8a02c6b58d2728546a933c84f8afd9cc, type: 3}
+  gameCanvas: {fileID: 650946246}
+  NbInputAFaireParInput: 3
+  DureePauseQuandErreur: 0.5
+  ColorWhenDisable: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  PairsDeTouches:
+  - Key1: a
+    Key2: e
+  - Key1: v
+    Key2: n
+  - Key1: w
+    Key2: c
+  - Key1: g
+    Key2: j
+  xMin: -300
+  xMax: 300
+  yMin: -200
+  yMax: 200
 --- !u!1 &1628182555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1734,7 @@ Transform:
   m_Children:
   - {fileID: 1210021509}
   - {fileID: 721124862}
+  - {fileID: 1595200533}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
