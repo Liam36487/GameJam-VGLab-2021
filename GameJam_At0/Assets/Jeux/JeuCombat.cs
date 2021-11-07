@@ -6,14 +6,13 @@ public class JeuCombat : Jeu
 {
     public bool IsActive = false;
 
+    public List<Difficulte> Difficultes;
     [Header("Gestion Input")]
     public string[] ListeToucheAAppuye;
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
-    public int NbInputAFaireParInput = 3;
-    public int nbTourAFaire = 3;
-    public float DureeDeVieInput = 3f;
+    
     
     private int NbInputFait = 0;
     private int NbToursFait = 0;
@@ -27,7 +26,17 @@ public class JeuCombat : Jeu
     [Header("Y Spawn Range")]
     public float yMin;
     public float yMax;
-    
+
+    private int NumDifficulteActuelle = 0;
+
+    [System.Serializable]
+    public class Difficulte
+    {
+        public int NbInputAFaireParInput = 3;
+        public int nbTourAFaire = 3;
+        public float DureeDeVieInput = 3f;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,16 +50,20 @@ public class JeuCombat : Jeu
         if(IsActive && Input.GetKeyDown(InputScript.KeyCode))
         {
             NbInputFait++;
-            if (NbInputFait >= NbInputAFaireParInput)
+            if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
             {
                 EndTour();
             }
         }
     }
 
-    public override void StartGame()
+    public override void StartGame(int numDifficulte)
     {
         IsActive = true;
+        if (numDifficulte >= Difficultes.Count)
+            NumDifficulteActuelle = Difficultes.Count - 1;
+        else
+            NumDifficulteActuelle = numDifficulte;
         SpawnPrefab();
     }
 
@@ -74,7 +87,7 @@ public class JeuCombat : Jeu
     IEnumerator AutoKillInput(GameObject prefab)
     {
         
-        yield return new WaitForSeconds(DureeDeVieInput);
+        yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureeDeVieInput);
 
         if (prefab == null)
         {
@@ -93,7 +106,7 @@ public class JeuCombat : Jeu
     {
         NbToursFait++;
         Destroy(prefabSpawned);
-        if (NbToursFait >= nbTourAFaire)
+        if (NbToursFait >= Difficultes[NumDifficulteActuelle].nbTourAFaire)
         {
             ResetGame();
             gameManager.EndGame(this);

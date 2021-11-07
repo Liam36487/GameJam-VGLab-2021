@@ -283,11 +283,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1006458521}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartJeu
+        m_MethodName: ChooseGame
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1595200534}
           m_ObjectArgumentAssemblyTypeName: Jeu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1006458521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 123999225}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -416,11 +428,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1006458521}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartJeu
+        m_MethodName: ChooseGame
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1210021508}
           m_ObjectArgumentAssemblyTypeName: Jeu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1006458521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 229199613}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -549,11 +573,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1006458521}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartJeu
+        m_MethodName: ChooseGame
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 721124863}
           m_ObjectArgumentAssemblyTypeName: Jeu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1006458521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 261297079}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -757,11 +793,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1006458521}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartJeu
+        m_MethodName: ChooseGame
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2109766648}
           m_ObjectArgumentAssemblyTypeName: Jeu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1006458521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: DisableButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 355852061}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1042,13 +1090,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  Difficultes:
+  - NbCibleACasser: 10
+    DureeDeVieInput: 2
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
+  - NbCibleACasser: 10
+    DureeDeVieInput: 1.7
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
+  - NbCibleACasser: 10
+    DureeDeVieInput: 1.2
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: d9da3cde43e4f9643b3ed0bc1251d5ef, type: 3}
   gameCanvas: {fileID: 650946246}
-  NbCibleACasser: 5
-  DureeDeVieInput: 2
   cursorTexture: {fileID: 2800000, guid: 31550acf4dfd614439c52a933afc116e, type: 3}
-  xRangeSpawn: 0.1
-  YRangeSpawn: 0.1
   xMin: -500
   xMax: 500
   yMin: -250
@@ -1277,6 +1334,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  Difficultes:
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 6
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 5
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 5
   ListeToucheAAppuye:
   - a
   - b
@@ -1284,9 +1351,6 @@ MonoBehaviour:
   - t
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: 9b9578c7cd4aea640aacb8039cee7f80, type: 3}
   gameCanvas: {fileID: 650946246}
-  NbInputAFaireParInput: 3
-  nbTourAFaire: 3
-  DureeDeVieInput: 3
   xMin: -200
   xMax: 200
   yMin: -200
@@ -1427,9 +1491,14 @@ MonoBehaviour:
   IsActive: 0
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: 8a02c6b58d2728546a933c84f8afd9cc, type: 3}
   gameCanvas: {fileID: 650946246}
-  NbInputAFaireParInput: 3
-  DureePauseQuandErreur: 0.5
   ColorWhenDisable: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  Difficultes:
+  - NbInputAFaireParInput: 10
+    DureePauseQuandErreur: 0.5
+  - NbInputAFaireParInput: 12
+    DureePauseQuandErreur: 0.5
+  - NbInputAFaireParInput: 15
+    DureePauseQuandErreur: 0.5
   PairsDeTouches:
   - Key1: a
     Key2: e
@@ -1746,6 +1815,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  Difficultes:
+  - NbInputAFaire: 5
+    DureeDeVieInput: 3
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 2
+    MaxRangeSpawn: 5
+  - NbInputAFaire: 6
+    DureeDeVieInput: 2.5
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 1.5
+    MaxRangeSpawn: 4
+  - NbInputAFaire: 8
+    DureeDeVieInput: 2
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 1.5
+    MaxRangeSpawn: 3.5
   ListeToucheAAppuye:
   - Key: z
     KeyTexture: {fileID: 21300000, guid: a462fd22c4c81aa4eb328cf0aa943148, type: 3}
@@ -1757,11 +1842,6 @@ MonoBehaviour:
     KeyTexture: {fileID: 21300000, guid: 363f2b57c1d026f4599f7e7b26c97303, type: 3}
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: 98ce79d664123114bad47bf81297e1b1, type: 3}
   gameCanvas: {fileID: 650946246}
-  NbInputAFaireParInput: 3
-  DureeDeVieInput: 1
-  DureePauseQuandErreur: 0.5
-  xRangeSpawn: 2
-  YRangeSpawn: 5
   xMin: -300
   xMax: 300
   yMin: -200
