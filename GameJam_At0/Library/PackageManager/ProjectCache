@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637718493386688809
-    m_Hash: 3271970127
+      ticks: 637718814155585599
+    m_Hash: 4254111745
   m_LockFileStatus:
     m_FilePath: C:/Users/Ludovic/Documents/UnityGameJam/GameJam-VGLab-2021/GameJam_At0/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637718493386698810
-    m_Hash: 3733999156
+      ticks: 637718814155575630
+    m_Hash: 3721099025
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
