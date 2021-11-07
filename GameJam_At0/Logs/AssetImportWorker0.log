@@ -87,7 +87,7 @@ Domain Reload Profiling:
 	ReloadAssembly (1080ms)
 		BeginReloadAssembly (153ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (7ms)
+			DisableScriptedObjects (9ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (19ms)
@@ -984,7 +984,7 @@ Domain Reload Profiling:
 				AfterProcessingInitializeOnLoad (9ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (9ms)
+			AwakeInstancesAfterBackupRestoration (8ms)
 Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.49 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
@@ -1627,8 +1627,8 @@ Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.31 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1619 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 82.2 MB.
-System memory in use after: 82.3 MB.
+System memory in use before: 79.1 MB.
+System memory in use after: 79.2 MB.
 
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 2168.
 Total: 3.308400 ms (FindLiveObjects: 0.216400 ms CreateObjectMapping: 0.061200 ms MarkObjects: 3.002400 ms  DeleteObjects: 0.026900 ms)
@@ -1963,8 +1963,8 @@ Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.29 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1619 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 82.2 MB.
-System memory in use after: 82.3 MB.
+System memory in use before: 79.1 MB.
+System memory in use after: 79.2 MB.
 
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 2178.
 Total: 5.655000 ms (FindLiveObjects: 0.249300 ms CreateObjectMapping: 0.072600 ms MarkObjects: 5.301700 ms  DeleteObjects: 0.029900 ms)
@@ -2030,7 +2030,7 @@ Domain Reload Profiling:
 			RebuildScriptCaches (45ms)
 			SetupLoadedEditorAssemblies (289ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (0ms)
 				BeforeProcessingInitializeOnLoad (53ms)
@@ -2277,7 +2277,7 @@ Domain Reload Profiling:
 			RebuildScriptCaches (41ms)
 			SetupLoadedEditorAssemblies (296ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (7ms)
+				InitializePlatformSupportModulesInManaged (8ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
 				BeforeProcessingInitializeOnLoad (59ms)
@@ -2473,8 +2473,8 @@ Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.33 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1619 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 82.2 MB.
-System memory in use after: 82.3 MB.
+System memory in use before: 79.1 MB.
+System memory in use after: 79.2 MB.
 
 Unloading 14 unused Assets to reduce memory usage. Loaded Objects now: 2194.
 Total: 3.484300 ms (FindLiveObjects: 0.162400 ms CreateObjectMapping: 0.057800 ms MarkObjects: 3.246500 ms  DeleteObjects: 0.016500 ms)

@@ -31,6 +31,7 @@ public class JeuSport : Jeu
 
     private int Nb1erInputFait = 0;
     private int Nb2emeInputFait = 0;
+    private int NbTour = 0;
     private GameObject PrefabSpawned1;
     private GameObject PrefabSpawned2;
 
@@ -44,7 +45,10 @@ public class JeuSport : Jeu
     public class Difficulte
     {
         public int NbInputAFaireParInput = 10;
+        public int NbTourAFaire = 2;
         public float DureePauseQuandErreur = 0.5f;
+        public float TempsEntreLesSpawn = 1f;
+        public float DureeDeVieInput = 5f;
     }
 
     private int Status; //0 rien du tout, 1 le 1er Input a commencé, 2 le deuxieme Input
@@ -73,7 +77,7 @@ public class JeuSport : Jeu
     // Update is called once per frame
     void Update()
     {
-        if(IsActive && Nb1erInputFait == 0 && Nb2emeInputFait == 0)
+        if(IsActive && PrefabSpawned1 != null && PrefabSpawned2 != null && Nb1erInputFait == 0 && Nb2emeInputFait == 0)
         {
             if (Input.GetKeyDown(InputScript1.KeyCode))
             {
@@ -81,8 +85,6 @@ public class JeuSport : Jeu
                 Status = 1;
                 InputScript1.Recolor(ColorWhenDisable);
                 InputScript2.Recolor(new Color(255, 255, 255, 255));
-                print("Status 1");
-                print(InputScript1.KeyCode + " pressed    Nb1 = " + Nb1erInputFait + "\rNb2 = " + Nb2emeInputFait);
                 return;
             }
             else if (Input.GetKeyDown(InputScript2.KeyCode))
@@ -91,8 +93,6 @@ public class JeuSport : Jeu
                 Status = 2;
                 InputScript2.Recolor(ColorWhenDisable);
                 InputScript1.Recolor(new Color(255, 255, 255, 255));
-                print("Status 2");
-                print(InputScript1.KeyCode + " pressed    Nb1 = " + Nb1erInputFait + "\rNb2 = " + Nb2emeInputFait);
                 return;
             }
 
@@ -100,20 +100,19 @@ public class JeuSport : Jeu
         
         if(IsActive)
         {
-            if (Input.GetKeyDown(InputScript1.KeyCode))
+            if (PrefabSpawned1 != null && PrefabSpawned2 != null && Input.GetKeyDown(InputScript1.KeyCode))
             {
                 print("yolo");
                 if (Status == 1)
                 {
-                    if (Nb1erInputFait == Nb2emeInputFait)
+                    if (PrefabSpawned1 != null && PrefabSpawned2 != null && Nb1erInputFait == Nb2emeInputFait)
                     {
                         Nb1erInputFait++;
                         InputScript1.Recolor(ColorWhenDisable);
                         InputScript2.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
-                            ResetGame();
-                            gameManager.EndGame(this);
+                            EndTour();
                         }
                     }
                     else
@@ -130,8 +129,7 @@ public class JeuSport : Jeu
                         InputScript2.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
-                            ResetGame();
-                            gameManager.EndGame(this);
+                            EndTour();
                         }
                     }
                     else
@@ -154,8 +152,7 @@ public class JeuSport : Jeu
                         InputScript1.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
-                            ResetGame();
-                            gameManager.EndGame(this);
+                            EndTour();
                         }
                     }
                     else
@@ -184,6 +181,51 @@ public class JeuSport : Jeu
                 print(InputScript2.KeyCode + " pressed    Nb1 = " + Nb1erInputFait + "\rNb2 = " + Nb2emeInputFait);
             }
         }
+    }
+
+    IEnumerator AutoKillInput(GameObject prefab1, GameObject prefab2)
+    {
+
+        yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureeDeVieInput);
+
+        if (prefab1 == null && prefab2 == null)
+        {
+            print("deja mort");
+        }
+        else
+        {
+            Nb1erInputFait = 0;
+            Destroy(prefab1);
+            Nb2emeInputFait = 0;
+            Destroy(prefab2);
+            StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
+        }
+    }
+
+    public void EndTour()
+    {
+        NbTour++;
+        Nb1erInputFait = 0;
+        Nb2emeInputFait = 0;
+        Status = 0;
+        if(NbTour >= Difficultes[NumDifficulteActuelle].NbTourAFaire)
+        {
+            ResetGame();
+            gameManager.EndGame(this);
+        }
+        else
+        {
+            Destroy(PrefabSpawned1);
+            Destroy(PrefabSpawned2);
+            StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
+        }
+    }
+
+    IEnumerator WaitBeforeSpawn(float tempsSpawnApresFinDeTour)
+    {
+        yield return new WaitForSeconds(tempsSpawnApresFinDeTour);
+
+        SpawnPrefab();
     }
 
      IEnumerator StopGame(AppuiInput inputThatMustBeWhite)
@@ -236,6 +278,8 @@ public class JeuSport : Jeu
         ItemHitboxList.Find(x => x.Rectangle.Equals(rec)).Id = PrefabSpawned1.GetInstanceID();
         InputScript2 = PrefabSpawned2.GetComponent<AppuiInput>();
         InputScript2.SetKeyCode(PairsDeTouches[IdPairChoisie].Key2);
+
+        StartCoroutine(AutoKillInput(PrefabSpawned1, PrefabSpawned2));
     }
 
     private void ResetGame()
@@ -243,6 +287,7 @@ public class JeuSport : Jeu
         Nb1erInputFait = 0;
         Nb2emeInputFait = 0;
         Status = 0;
+        NbTour = 0;
         ItemHitboxList.Clear();
         Destroy(PrefabSpawned1);
         Destroy(PrefabSpawned2);

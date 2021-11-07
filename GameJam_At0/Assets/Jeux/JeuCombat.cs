@@ -35,6 +35,7 @@ public class JeuCombat : Jeu
         public int NbInputAFaireParInput = 3;
         public int nbTourAFaire = 3;
         public float DureeDeVieInput = 3f;
+        public float TempsEntreLesSpawn = 1f;
     }
 
 
@@ -47,13 +48,19 @@ public class JeuCombat : Jeu
     // Update is called once per frame
     void Update()
     {
-        if(IsActive && Input.GetKeyDown(InputScript.KeyCode))
+        if(IsActive && prefabSpawned != null && Input.GetKeyDown(InputScript.KeyCode))
         {
             NbInputFait++;
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
             {
                 EndTour();
             }
+        }
+
+        if (IsActive && prefabSpawned != null && Input.anyKeyDown && !Input.GetKeyDown(InputScript.KeyCode))
+        {
+            EndTour();
+            NbToursFait--;
         }
     }
 
@@ -97,8 +104,7 @@ public class JeuCombat : Jeu
         {
             NbInputFait = 0;
             Destroy(prefabSpawned);
-            //perdre 1PV
-            SpawnPrefab();
+            StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
         }
     }
 
@@ -115,7 +121,14 @@ public class JeuCombat : Jeu
         else
         {
             NbInputFait = 0;
-            SpawnPrefab();
+            StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
         }
+    }
+
+    IEnumerator WaitBeforeSpawn(float tempsSpawnApresFinDeTour)
+    {
+        yield return new WaitForSeconds(tempsSpawnApresFinDeTour);
+
+        SpawnPrefab();
     }
 }
