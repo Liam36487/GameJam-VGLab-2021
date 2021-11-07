@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Canvas CanvasUI;
+    public List<Player> Players;
 
     private List<Jeu> JeuxALancer;
 
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         JeuxALancer = new List<Jeu>();
+        
+    }
+
+    public void MovePlayer()
+    {
+        Players[0].EngageMoving(new Vector3(33, 7, 12), 0.002f);
     }
 
     // Update is called once per frame

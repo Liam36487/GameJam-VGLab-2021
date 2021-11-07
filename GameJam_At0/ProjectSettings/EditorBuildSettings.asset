@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Work_Scene.unity
+    path: Assets/Scenes/Ludo_WorkScene.unity
     guid: 752dbc726bc9b334e82c506a2aec9f38
   m_configObjects: {}

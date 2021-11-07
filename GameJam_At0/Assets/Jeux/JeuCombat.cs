@@ -6,7 +6,12 @@ public class JeuCombat : Jeu
 {
     public bool IsActive = false;
 
+    public float shakerRateGoodInput = 0.2f;
+    public float shakerRateBadInput = 0.5f;
+
+
     public List<Difficulte> Difficultes;
+
     [Header("Gestion Input")]
     public string[] ListeToucheAAppuye;
     public GameObject PrefabInputToSpam;
@@ -28,6 +33,7 @@ public class JeuCombat : Jeu
     public float yMax;
 
     private int NumDifficulteActuelle = 0;
+    private StressReceiver Shaker;
 
     [System.Serializable]
     public class Difficulte
@@ -42,7 +48,11 @@ public class JeuCombat : Jeu
     // Start is called before the first frame update
     void Start()
     {
-       // StartGame();
+        // StartGame();
+        if (Camera.main != null)
+        {
+            Shaker = Camera.main.GetComponent<StressReceiver>();
+        }
     }
 
     // Update is called once per frame
@@ -51,6 +61,7 @@ public class JeuCombat : Jeu
         if(IsActive && prefabSpawned != null && Input.GetKeyDown(InputScript.KeyCode))
         {
             NbInputFait++;
+            if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
             {
                 EndTour();
@@ -61,6 +72,7 @@ public class JeuCombat : Jeu
         {
             EndTour();
             NbToursFait--;
+            if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
         }
     }
 

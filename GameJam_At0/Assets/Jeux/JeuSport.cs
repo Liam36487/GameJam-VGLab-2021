@@ -5,7 +5,10 @@ using UnityEngine;
 public class JeuSport : Jeu
 {
     public bool IsActive = false;
-    
+
+    public float shakerRateGoodInput = 0.1f;
+    public float shakerRateBadInput = 0.3f;
+
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
@@ -27,7 +30,7 @@ public class JeuSport : Jeu
     public float yMax;
 
     private int NumDifficulteActuelle = 0;
-    private int IdPairChoisie;
+    private StressReceiver Shaker;
 
     private int Nb1erInputFait = 0;
     private int Nb2emeInputFait = 0;
@@ -71,7 +74,11 @@ public class JeuSport : Jeu
     // Start is called before the first frame update
     void Start()
     {
-       // StartGame();
+        // StartGame();
+        if (Camera.main != null)
+        {
+            Shaker = Camera.main.GetComponent<StressReceiver>();
+        }
     }
 
     // Update is called once per frame
@@ -82,6 +89,7 @@ public class JeuSport : Jeu
             if (Input.GetKeyDown(InputScript1.KeyCode))
             {
                 Nb1erInputFait++;
+                if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                 Status = 1;
                 InputScript1.Recolor(ColorWhenDisable);
                 InputScript2.Recolor(new Color(255, 255, 255, 255));
@@ -90,6 +98,7 @@ public class JeuSport : Jeu
             else if (Input.GetKeyDown(InputScript2.KeyCode))
             {
                 Nb2emeInputFait++;
+                if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                 Status = 2;
                 InputScript2.Recolor(ColorWhenDisable);
                 InputScript1.Recolor(new Color(255, 255, 255, 255));
@@ -108,8 +117,11 @@ public class JeuSport : Jeu
                     if (PrefabSpawned1 != null && PrefabSpawned2 != null && Nb1erInputFait == Nb2emeInputFait)
                     {
                         Nb1erInputFait++;
-                        InputScript1.Recolor(ColorWhenDisable);
-                        InputScript2.Recolor(new Color(255, 255, 255, 255));
+                        if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
+                        if (InputScript1 != null)
+                            InputScript1.Recolor(ColorWhenDisable);
+                        if (InputScript2 != null)
+                            InputScript2.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             EndTour();
@@ -125,8 +137,12 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait < Nb2emeInputFait)
                     {
                         Nb1erInputFait++;
-                        InputScript1.Recolor(ColorWhenDisable);
-                        InputScript2.Recolor(new Color(255, 255, 255, 255));
+                        if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
+                        if (InputScript1 != null)
+                            InputScript1.Recolor(ColorWhenDisable);
+
+                        if (InputScript2 != null)
+                            InputScript2.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             EndTour();
@@ -137,9 +153,8 @@ public class JeuSport : Jeu
                         StartCoroutine(StopGame(InputScript2));
                     }
                 }
-                print(InputScript1.KeyCode + " pressed    Nb1 = " + Nb1erInputFait + "\rNb2 = " + Nb2emeInputFait);
             }
-            if (Input.GetKeyDown(InputScript2.KeyCode))
+            if (PrefabSpawned1 != null && PrefabSpawned2 != null && Input.GetKeyDown(InputScript2.KeyCode))
             {
                 print("yolo");
                 if (Status == 1)
@@ -147,9 +162,12 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait > Nb2emeInputFait)
                     {
                         Nb2emeInputFait++;
+                        if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
 
-                        InputScript2.Recolor(ColorWhenDisable);
-                        InputScript1.Recolor(new Color(255, 255, 255, 255));
+                        if (InputScript2 != null)
+                            InputScript2.Recolor(ColorWhenDisable);
+                        if (InputScript1 != null)
+                            InputScript1.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             EndTour();
@@ -165,8 +183,11 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait == Nb2emeInputFait)
                     {
                         Nb2emeInputFait++;
-                        InputScript2.Recolor(ColorWhenDisable);
-                        InputScript1.Recolor(new Color(255, 255, 255, 255));
+                        if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
+                        if (InputScript2 != null)
+                            InputScript2.Recolor(ColorWhenDisable);
+                        if (InputScript1 != null)
+                            InputScript1.Recolor(new Color(255, 255, 255, 255));
                         if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             ResetGame();
@@ -178,7 +199,6 @@ public class JeuSport : Jeu
                         StartCoroutine(StopGame(InputScript1));
                     }
                 }
-                print(InputScript2.KeyCode + " pressed    Nb1 = " + Nb1erInputFait + "\rNb2 = " + Nb2emeInputFait);
             }
         }
     }
@@ -198,6 +218,7 @@ public class JeuSport : Jeu
             Destroy(prefab1);
             Nb2emeInputFait = 0;
             Destroy(prefab2);
+            ItemHitboxList.Clear();
             StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
         }
     }
@@ -217,6 +238,7 @@ public class JeuSport : Jeu
         {
             Destroy(PrefabSpawned1);
             Destroy(PrefabSpawned2);
+            ItemHitboxList.Clear();
             StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
         }
     }
@@ -231,13 +253,17 @@ public class JeuSport : Jeu
      IEnumerator StopGame(AppuiInput inputThatMustBeWhite)
     {
         IsActive = false;
+        if (Shaker != null) Shaker.InduceStress(shakerRateBadInput); 
 
-        InputScript1.Recolor(ColorWhenDisable);
-        InputScript2.Recolor(ColorWhenDisable);
+        if (InputScript1 != null)
+            InputScript1.Recolor(ColorWhenDisable);
+        if(InputScript2 != null)
+            InputScript2.Recolor(ColorWhenDisable);
 
         yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureePauseQuandErreur);
-        
-        inputThatMustBeWhite.Recolor(new Color(255, 255, 255, 255));
+
+        if (inputThatMustBeWhite != null)
+            inputThatMustBeWhite.Recolor(new Color(255, 255, 255, 255));
 
         IsActive = true;
     }
@@ -249,8 +275,7 @@ public class JeuSport : Jeu
             NumDifficulteActuelle = Difficultes.Count - 1;
         else
             NumDifficulteActuelle = numDifficulte;
-        IdPairChoisie = Random.Range(0, PairsDeTouches.Count - 1);
-        SpawnPrefab();
+        StartCoroutine(WaitBeforeSpawn(Difficultes[NumDifficulteActuelle].TempsEntreLesSpawn));
 
 
     }
@@ -258,6 +283,8 @@ public class JeuSport : Jeu
     private void SpawnPrefab()
     {
         RectTransform rectT = PrefabInputToSpam.GetComponent<RectTransform>();
+
+        int IdPairChoisie = Random.Range(0, PairsDeTouches.Count - 1);
 
         Rect rec = PlaceRandom(new Vector2(rectT.rect.width, rectT.rect.height));
         if (rec.x == -666 && rec.y == -666 && rec.width == -666 && rec.height == -666) return;
@@ -288,9 +315,9 @@ public class JeuSport : Jeu
         Nb2emeInputFait = 0;
         Status = 0;
         NbTour = 0;
-        ItemHitboxList.Clear();
         Destroy(PrefabSpawned1);
         Destroy(PrefabSpawned2);
+        ItemHitboxList.Clear();
     }
 
     public Rect PlaceRandom(Vector2 itemHitBox)
