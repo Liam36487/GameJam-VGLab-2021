@@ -7,10 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public Canvas CanvasUI;
 
+    private List<Jeu> JeuxALancer;
+
+    private int IndexJeu = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        JeuxALancer = new List<Jeu>();
     }
 
     // Update is called once per frame
@@ -22,14 +27,47 @@ public class GameManager : MonoBehaviour
     public void EndGame(Jeu jeu)
     {
         jeu.gameObject.SetActive(false);
-        CanvasUI.gameObject.SetActive(true);
+        IndexJeu++;
+        if (IndexJeu >= JeuxALancer.Count)
+        {
+            IndexJeu = 0;
+            JeuxALancer.Clear();
+            ShowChoixJeux();
+        }
+        else
+            StartJeu(JeuxALancer[IndexJeu]);
     }
 
     public void StartJeu(Jeu jeu)
     {
         CanvasUI.gameObject.SetActive(false);
         jeu.gameObject.SetActive(true);
-        jeu.StartGame();
+        jeu.StartGame(IndexJeu);
     }
 
+    public void ChooseGame(Jeu jeu)
+    {
+        if (JeuxALancer.Count >= 3) StartJeu(JeuxALancer[0]);
+        JeuxALancer.Add(jeu);
+        if (JeuxALancer.Count >= 3) StartJeu(JeuxALancer[0]);
+    }
+
+    public void DisableButton(Button button)
+    {
+        button.interactable = false;
+    }
+
+    public void ShowChoixJeux()
+    {
+        CanvasUI.gameObject.SetActive(true);
+        foreach (Button buttons in CanvasUI.GetComponentsInChildren<Button>())
+        {
+            buttons.interactable = true;
+        }
+    }
+
+    public void SetDifficulte(int i)
+    {
+        IndexJeu = i;
+    }
 }

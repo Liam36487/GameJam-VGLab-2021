@@ -5,19 +5,14 @@ using UnityEngine;
 public class JeuVoiture : Jeu
 {
     public bool IsActive = false;
-    
+
+    public List<Difficulte> Difficultes;
     [Header("Gestion Input")]
     public List<KeyImagePair> ListeToucheAAppuye;
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
-    public int NbInputAFaireParInput = 3;
-    public float DureeDeVieInput = 1f;
-    public float DureePauseQuandErreur = 0.5f;
-
-    [Header("Random Spawn Range")]
-    public float xRangeSpawn = 2f;
-    public float YRangeSpawn = 5f;
+    
     
     [Header("X Spawn Range")]
     public float xMin;
@@ -31,8 +26,20 @@ public class JeuVoiture : Jeu
     private AppuiInput InputScript;
     private GameObject prefabSpawned;
     private float RandomTimer;
-    
-    
+    private int NumDifficulteActuelle = 0;
+
+    [System.Serializable]
+    public class Difficulte
+    {
+        public int NbInputAFaire = 3;
+        public float DureeDeVieInput = 1f;
+        public float DureePauseQuandErreur = 0.5f;
+
+        [Header("Random Spawn Range APRES DESTRUCTION")]
+        public float MinRangeSpawn = 2f;
+        public float MaxRangeSpawn = 5f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,7 +59,7 @@ public class JeuVoiture : Jeu
             print("keypressed " + Input.GetKeyDown(InputScript.KeyCode));
             NbInputFait++;
             Destroy(prefabSpawned);
-            if (NbInputFait >= NbInputAFaireParInput)
+            if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaire)
             {
                 ResetGame();
                 gameManager.EndGame(this);
@@ -63,12 +70,14 @@ public class JeuVoiture : Jeu
         {
             //Jouer son accident
             NbInputFait--;
+            if (NbInputFait < 0) NbInputFait = 0;
             StartCoroutine(StopTime());
         }
         else if (IsActive && prefabSpawned == null && Input.anyKeyDown)
         {
             //Jouer son accident
             NbInputFait--;
+            if (NbInputFait < 0) NbInputFait = 0;
         }
 
         if (IsActive && prefabSpawned == null)
@@ -77,21 +86,25 @@ public class JeuVoiture : Jeu
             if (RandomTimer <= 0)
             {
                 SpawnPrefab();
-                RandomTimer = Random.Range(xRangeSpawn, YRangeSpawn);
+                RandomTimer = Random.Range(Difficultes[NumDifficulteActuelle].MinRangeSpawn, Difficultes[NumDifficulteActuelle].MaxRangeSpawn);
             }
         }
     }
 
-    public override void StartGame()
+    public override void StartGame(int numDifficulte)
     {
         IsActive = true;
+        if (numDifficulte >= Difficultes.Count)
+            NumDifficulteActuelle = Difficultes.Count - 1;
+        else
+            NumDifficulteActuelle = numDifficulte;
     }
 
     IEnumerator StopTime()
     {
         IsActive = false;
 
-        yield return new WaitForSeconds(DureePauseQuandErreur);
+        yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureePauseQuandErreur);
         
         IsActive = true;
     }
@@ -116,7 +129,7 @@ public class JeuVoiture : Jeu
     IEnumerator AutoKillInput(GameObject prefab)
     {
         
-        yield return new WaitForSeconds(DureeDeVieInput);
+        yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureeDeVieInput);
 
         if (prefab == null)
         {

@@ -19,5 +19,5 @@ public abstract class Jeu : MonoBehaviour
     }
 
 
-    public abstract void StartGame();
+    public abstract void StartGame(int numDifficulte);
 }

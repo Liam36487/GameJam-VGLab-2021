@@ -5,22 +5,18 @@ using UnityEngine;
 public class JeuTir : Jeu
 {
     public bool IsActive = false;
-    
+
+    public List<Difficulte> Difficultes;
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
-    public int NbCibleACasser = 5;
-    public float DureeDeVieInput = 1.5f;
+    
     public Texture2D cursorTexture;
 
     private int NbCiblesCassees = 0;
     private ClicInput InputScript;
     private GameObject prefabSpawned;
-
-    [Header("Random Spawn Range")]
-    public float xRangeSpawn;
-    public float YRangeSpawn;
-
+    
     [Header("X Spawn Range")]
     public float xMin;
     public float xMax;
@@ -29,9 +25,9 @@ public class JeuTir : Jeu
     public float yMin;
     public float yMax;
     
-
     private float RandomTimer;
     private List<HitBoxPair> ItemHitboxList = new List<HitBoxPair>();
+    private int NumDifficulteActuelle = 0;
 
     public class HitBoxPair
     {
@@ -39,10 +35,21 @@ public class JeuTir : Jeu
         public Rect Rectangle;
     }
 
+    [System.Serializable]
+    public class Difficulte
+    {
+        public int NbCibleACasser = 5;
+        public float DureeDeVieInput = 1.5f;
+
+        [Header("Random Spawn Range")]
+        public float MinRangeSpawn = 0.5f;
+        public float MaxRangeSpawn = 1.5f;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        RandomTimer = Random.Range(xRangeSpawn, YRangeSpawn);
+        RandomTimer = Random.Range(Difficultes[NumDifficulteActuelle].MinRangeSpawn, Difficultes[NumDifficulteActuelle].MaxRangeSpawn);
        // StartGame();
     }
 
@@ -51,7 +58,7 @@ public class JeuTir : Jeu
     {
         if(IsActive && Input.GetMouseButtonDown(0))
         {
-            if (NbCiblesCassees >= NbCibleACasser-1)
+            if (NbCiblesCassees >= Difficultes[NumDifficulteActuelle].NbCibleACasser - 1)
             {
                 ResetGame();
                 Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -67,14 +74,18 @@ public class JeuTir : Jeu
             if(RandomTimer <= 0)
             {
                 SpawnPrefab();
-                RandomTimer = Random.Range(xRangeSpawn, YRangeSpawn);
+                RandomTimer = Random.Range(Difficultes[NumDifficulteActuelle].MinRangeSpawn, Difficultes[NumDifficulteActuelle].MaxRangeSpawn);
             }
         }
     }
 
-    public override void StartGame()
+    public override void StartGame(int numDifficulte)
     {
         Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.width/2, cursorTexture.height/2), CursorMode.Auto);
+        if (numDifficulte >= Difficultes.Count)
+            NumDifficulteActuelle = Difficultes.Count - 1;
+        else
+            NumDifficulteActuelle = numDifficulte;
         IsActive = true;
     }
     
@@ -90,7 +101,7 @@ public class JeuTir : Jeu
         ItemHitboxList.Find(x => x.Rectangle.Equals(rec)).Id = prefabSpawned.GetInstanceID();
         InputScript = prefabSpawned.GetComponent<ClicInput>();
         InputScript.JeuTir = this;
-        InputScript.Expiration = DureeDeVieInput;
+        InputScript.Expiration = Difficultes[NumDifficulteActuelle].DureeDeVieInput;
         
     }
     private void ResetGame()

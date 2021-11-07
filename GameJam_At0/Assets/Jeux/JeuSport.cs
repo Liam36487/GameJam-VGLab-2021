@@ -9,12 +9,10 @@ public class JeuSport : Jeu
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
-    public int NbInputAFaireParInput = 10;
-
-
-    public float DureePauseQuandErreur = 0.5f;
-
+   
     public Color ColorWhenDisable;
+
+    public List<Difficulte> Difficultes;
 
     [Header("Gestion Input")]
     [SerializeField]
@@ -28,6 +26,7 @@ public class JeuSport : Jeu
     public float yMin;
     public float yMax;
 
+    private int NumDifficulteActuelle = 0;
     private int IdPairChoisie;
 
     private int Nb1erInputFait = 0;
@@ -39,6 +38,14 @@ public class JeuSport : Jeu
     private AppuiInput InputScript2;
 
     private List<HitBoxPair> ItemHitboxList = new List<HitBoxPair>();
+
+
+    [System.Serializable]
+    public class Difficulte
+    {
+        public int NbInputAFaireParInput = 10;
+        public float DureePauseQuandErreur = 0.5f;
+    }
 
     private int Status; //0 rien du tout, 1 le 1er Input a commencé, 2 le deuxieme Input
 
@@ -103,7 +110,7 @@ public class JeuSport : Jeu
                         Nb1erInputFait++;
                         InputScript1.Recolor(ColorWhenDisable);
                         InputScript2.Recolor(new Color(255, 255, 255, 255));
-                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == NbInputAFaireParInput)
+                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             ResetGame();
                             gameManager.EndGame(this);
@@ -121,7 +128,7 @@ public class JeuSport : Jeu
                         Nb1erInputFait++;
                         InputScript1.Recolor(ColorWhenDisable);
                         InputScript2.Recolor(new Color(255, 255, 255, 255));
-                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == NbInputAFaireParInput)
+                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             ResetGame();
                             gameManager.EndGame(this);
@@ -145,7 +152,7 @@ public class JeuSport : Jeu
 
                         InputScript2.Recolor(ColorWhenDisable);
                         InputScript1.Recolor(new Color(255, 255, 255, 255));
-                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == NbInputAFaireParInput)
+                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             ResetGame();
                             gameManager.EndGame(this);
@@ -163,7 +170,7 @@ public class JeuSport : Jeu
                         Nb2emeInputFait++;
                         InputScript2.Recolor(ColorWhenDisable);
                         InputScript1.Recolor(new Color(255, 255, 255, 255));
-                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == NbInputAFaireParInput)
+                        if (Nb1erInputFait == Nb2emeInputFait && Nb1erInputFait == Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
                         {
                             ResetGame();
                             gameManager.EndGame(this);
@@ -186,16 +193,20 @@ public class JeuSport : Jeu
         InputScript1.Recolor(ColorWhenDisable);
         InputScript2.Recolor(ColorWhenDisable);
 
-        yield return new WaitForSeconds(DureePauseQuandErreur);
+        yield return new WaitForSeconds(Difficultes[NumDifficulteActuelle].DureePauseQuandErreur);
         
         inputThatMustBeWhite.Recolor(new Color(255, 255, 255, 255));
 
         IsActive = true;
     }
 
-    public override void StartGame()
+    public override void StartGame(int numDifficulte)
     {
         IsActive = true;
+        if (numDifficulte >= Difficultes.Count)
+            NumDifficulteActuelle = Difficultes.Count - 1;
+        else
+            NumDifficulteActuelle = numDifficulte;
         IdPairChoisie = Random.Range(0, PairsDeTouches.Count - 1);
         SpawnPrefab();
 
