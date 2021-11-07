@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,14 @@ public class ClicInput : CustomInput
 
     }
 
-    void OnClick()
+    public void OnClick()
     {
+        Debug.Log("Bip");
         JeuTir.CibleCasse(gameObject);
+    }
+
+    public void SetImage(Sprite sprite)
+    {
+        GetComponent<Image>().sprite = sprite;
     }
 }

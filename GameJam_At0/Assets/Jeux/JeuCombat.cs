@@ -9,6 +9,7 @@ public class JeuCombat : Jeu
     public float shakerRateGoodInput = 0.2f;
     public float shakerRateBadInput = 0.5f;
 
+    public int idJeu = 1;
 
     public List<Difficulte> Difficultes;
 

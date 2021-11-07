@@ -9,15 +9,22 @@ public class GameManager : MonoBehaviour
     public List<Player> Players;
 
     private List<Jeu> JeuxALancer;
-
+    
     private int IndexJeu = 0;
+    private int IndexPlayer = 0;
 
+    
+    private int IndexJeuAVerif;
+
+    private int CptGoodGame = 0;
+
+    GameObject PanelTextAffiche;
 
     // Start is called before the first frame update
     void Start()
     {
         JeuxALancer = new List<Jeu>();
-        
+        PanelTextAffiche = Instantiate(Players[IndexPlayer].JeuxPref[Players[IndexPlayer].IndexSerieDeJeu].PrefabPanelPref, CanvasUI.transform);
     }
 
     public void MovePlayer()
@@ -38,8 +45,10 @@ public class GameManager : MonoBehaviour
         if (IndexJeu >= JeuxALancer.Count)
         {
             IndexJeu = 0;
+            IndexJeuAVerif = 0;
+            CptGoodGame = 0;
             JeuxALancer.Clear();
-            ShowChoixJeux();
+            ChangePlayer();
         }
         else
             StartJeu(JeuxALancer[IndexJeu]);
@@ -47,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void StartJeu(Jeu jeu)
     {
+        Destroy(PanelTextAffiche);
         CanvasUI.gameObject.SetActive(false);
         jeu.gameObject.SetActive(true);
         jeu.StartGame(IndexJeu);
@@ -56,12 +66,58 @@ public class GameManager : MonoBehaviour
     {
         if (JeuxALancer.Count >= 3) StartJeu(JeuxALancer[0]);
         JeuxALancer.Add(jeu);
-        if (JeuxALancer.Count >= 3) StartJeu(JeuxALancer[0]);
+        print("IndexPlayer : " + IndexPlayer + "\tIndexSerieDeJeu : " + Players[IndexPlayer].IndexSerieDeJeu + "\tIndexJeuVerif : " + IndexJeuAVerif);
+        if (Players[IndexPlayer].JeuxPref[Players[IndexPlayer].IndexSerieDeJeu].IdJeuxPref[IndexJeuAVerif] == jeu.IdJeu)
+        {
+            CptGoodGame++;
+        }
+        IndexJeuAVerif++;
+        if (JeuxALancer.Count >= 3)
+        {
+            if (CptGoodGame != 3)
+            {
+                //Refaire
+                IndexJeu = 0;
+                IndexJeuAVerif = 0;
+                CptGoodGame = 0;
+                JeuxALancer.Clear();
+                ShowChoixJeux();
+            }
+            else
+            {
+                Players[IndexPlayer].IndexSerieDeJeu++;
+                //Players[IndexPlayer].JeuxPref.RemoveAt(IndexSerieDeJeu);
+                StartJeu(JeuxALancer[0]);
+            }
+        }
     }
 
     public void DisableButton(Button button)
     {
         button.interactable = false;
+    }
+
+    private void ChangePlayer()
+    {
+        IndexPlayer++;
+        if (IndexPlayer >= Players.Count)
+        {
+            if (Players[IndexPlayer - 1].IndexSerieDeJeu >= 3)
+            {
+                //Ecran final
+                print("FIN DU GAMEGAME");
+            }
+            else
+            {
+                IndexPlayer = 0;
+                ShowChoixJeux();
+            }
+
+        }
+        else
+        {
+            ShowChoixJeux();
+        }
     }
 
     public void ShowChoixJeux()

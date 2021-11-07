@@ -5,6 +5,10 @@ using UnityEngine;
 public abstract class Jeu : MonoBehaviour
 {
     public GameManager gameManager;
+    public IdOfGame IdJeu = IdOfGame.NoGame;
+
+    [System.Serializable]
+    public enum IdOfGame { NoGame, Combat, Tir, Sport, Course }
 
     // Start is called before the first frame update
     void Start()

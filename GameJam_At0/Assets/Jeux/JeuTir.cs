@@ -6,6 +6,7 @@ public class JeuTir : Jeu
 {
     public bool IsActive = false;
 
+    public List<Sprite> ListSprites;
     public List<Difficulte> Difficultes;
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
@@ -16,7 +17,9 @@ public class JeuTir : Jeu
     private int NbCiblesCassees = 0;
     private ClicInput InputScript;
     private GameObject prefabSpawned;
-    
+
+    public int idJeu = 2;
+
     [Header("X Spawn Range")]
     public float xMin;
     public float xMax;
@@ -28,6 +31,7 @@ public class JeuTir : Jeu
     private float RandomTimer;
     private List<HitBoxPair> ItemHitboxList = new List<HitBoxPair>();
     private int NumDifficulteActuelle = 0;
+    
 
     public class HitBoxPair
     {
@@ -101,6 +105,7 @@ public class JeuTir : Jeu
         ItemHitboxList.Find(x => x.Rectangle.Equals(rec)).Id = prefabSpawned.GetInstanceID();
         InputScript = prefabSpawned.GetComponent<ClicInput>();
         InputScript.JeuTir = this;
+        InputScript.SetImage(ListSprites[Random.Range(0, ListSprites.Count - 1)]);
         InputScript.Expiration = Difficultes[NumDifficulteActuelle].DureeDeVieInput;
         
     }

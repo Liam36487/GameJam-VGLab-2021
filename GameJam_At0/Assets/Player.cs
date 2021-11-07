@@ -9,6 +9,19 @@ public class Player : MonoBehaviour
     public Vector3 position;
     public Vector3 targetPosition;
     public float speed;
+    public int IndexSerieDeJeu = 0;
+
+    public List<Preferences> JeuxPref;
+
+
+    [System.Serializable]
+    public class Preferences
+    {
+        public GameObject PrefabPanelPref;
+        public Jeu.IdOfGame[] IdJeuxPref;
+       
+    }
+    
 
     void Update()
     {
