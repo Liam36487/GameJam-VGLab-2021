@@ -11,6 +11,7 @@ public class JeuSport : Jeu
     public Canvas gameCanvas;
     public int NbInputAFaireParInput = 10;
 
+
     public float DureePauseQuandErreur = 0.5f;
 
     public Color ColorWhenDisable;
@@ -197,6 +198,8 @@ public class JeuSport : Jeu
         IsActive = true;
         IdPairChoisie = Random.Range(0, PairsDeTouches.Count - 1);
         SpawnPrefab();
+
+
     }
 
     private void SpawnPrefab()

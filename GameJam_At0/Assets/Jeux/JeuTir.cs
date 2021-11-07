@@ -5,15 +5,14 @@ using UnityEngine;
 public class JeuTir : Jeu
 {
     public bool IsActive = false;
-
-    [Header("Gestion Input")]
-    public string[] ListeToucheAAppuye;
+    
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
     public int NbCibleACasser = 5;
     public float DureeDeVieInput = 1.5f;
-    
+    public Texture2D cursorTexture;
+
     private int NbCiblesCassees = 0;
     private ClicInput InputScript;
     private GameObject prefabSpawned;
@@ -32,7 +31,13 @@ public class JeuTir : Jeu
     
 
     private float RandomTimer;
-    private HashSet<Rect> ItemHitboxList = new HashSet<Rect>();
+    private List<HitBoxPair> ItemHitboxList = new List<HitBoxPair>();
+
+    public class HitBoxPair
+    {
+        public int Id;
+        public Rect Rectangle;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -46,14 +51,17 @@ public class JeuTir : Jeu
     {
         if(IsActive && Input.GetMouseButtonDown(0))
         {
-            if (NbCiblesCassees >= NbCibleACasser)
+            if (NbCiblesCassees >= NbCibleACasser-1)
             {
                 ResetGame();
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 gameManager.EndGame(this);
                 print("fin du jeu");
             }
         }
-        if(IsActive)
+        
+
+        if (IsActive)
         {
             RandomTimer -= Time.deltaTime;
             if(RandomTimer <= 0)
@@ -66,9 +74,10 @@ public class JeuTir : Jeu
 
     public override void StartGame()
     {
+        Cursor.SetCursor(cursorTexture, new Vector2(cursorTexture.width/2, cursorTexture.height/2), CursorMode.Auto);
         IsActive = true;
     }
-
+    
     private void SpawnPrefab()
     {
         RectTransform rectT = PrefabInputToSpam.GetComponent<RectTransform>();
@@ -78,6 +87,7 @@ public class JeuTir : Jeu
                
         prefabSpawned = Instantiate(PrefabInputToSpam, new Vector3(rec.x, rec.y, 0), Quaternion.identity);
         prefabSpawned.transform.SetParent(gameCanvas.transform, false);
+        ItemHitboxList.Find(x => x.Rectangle.Equals(rec)).Id = prefabSpawned.GetInstanceID();
         InputScript = prefabSpawned.GetComponent<ClicInput>();
         InputScript.JeuTir = this;
         InputScript.Expiration = DureeDeVieInput;
@@ -94,7 +104,13 @@ public class JeuTir : Jeu
     public void CibleCasse(GameObject cible)
     {
         NbCiblesCassees++;
+        ItemHitboxList.Remove(ItemHitboxList.Find(x => x.Id == cible.GetInstanceID()));
         Destroy(cible);
+    }
+
+    public void RemoveHitBox(GameObject cible)
+    {
+        ItemHitboxList.Remove(ItemHitboxList.Find(x => x.Id == cible.GetInstanceID()));
     }
 
     public Rect PlaceRandom(Vector2 itemHitBox)
@@ -123,16 +139,16 @@ public class JeuTir : Jeu
                 error--;
         }
 
-        ItemHitboxList.Add(hitBox);
+        ItemHitboxList.Add(new HitBoxPair { Rectangle = hitBox });
 
         return hitBox;
     }
 
     private bool HasCollision(Rect itemHitBox)
     {
-        foreach (Rect item in ItemHitboxList)
+        foreach (HitBoxPair item in ItemHitboxList)
         {
-            if (item.Overlaps(itemHitBox))
+            if (item.Rectangle.Overlaps(itemHitBox))
                 return true;
         }
         return false;
