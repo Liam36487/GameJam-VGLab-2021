@@ -18,7 +18,11 @@ public class ClicInput : CustomInput
     void Update()
     {
         Expiration -= Time.deltaTime;
-        if (Expiration <= 0) Destroy(gameObject);
+        if (Expiration <= 0)
+        {
+            JeuTir.RemoveHitBox(this.gameObject);
+            Destroy(gameObject);
+        }
 
     }
 
