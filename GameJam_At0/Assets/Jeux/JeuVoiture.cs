@@ -5,6 +5,8 @@ using UnityEngine;
 public class JeuVoiture : Jeu
 {
     public bool IsActive = false;
+    public float shakerRateGoodInput = 0.1f;
+    public float shakerRateBadInput = 0.3f;
 
     public List<Difficulte> Difficultes;
     [Header("Gestion Input")]
@@ -27,6 +29,7 @@ public class JeuVoiture : Jeu
     private GameObject prefabSpawned;
     private float RandomTimer;
     private int NumDifficulteActuelle = 0;
+    private StressReceiver Shaker;
 
     [System.Serializable]
     public class Difficulte
@@ -43,7 +46,11 @@ public class JeuVoiture : Jeu
     // Start is called before the first frame update
     void Start()
     {
-       // StartGame();
+        // StartGame();
+        if (Camera.main != null)
+        {
+            Shaker = Camera.main.GetComponent<StressReceiver>();
+        }
     }
 
     // Update is called once per frame
@@ -58,6 +65,7 @@ public class JeuVoiture : Jeu
         {
             print("keypressed " + Input.GetKeyDown(InputScript.KeyCode));
             NbInputFait++;
+            if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
             Destroy(prefabSpawned);
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaire)
             {
@@ -70,13 +78,16 @@ public class JeuVoiture : Jeu
         {
             //Jouer son accident
             NbInputFait--;
+            if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
             if (NbInputFait < 0) NbInputFait = 0;
-            StartCoroutine(StopTime());
+            Destroy(prefabSpawned);
+            //StartCoroutine(StopTime());
         }
         else if (IsActive && prefabSpawned == null && Input.anyKeyDown)
         {
             //Jouer son accident
             NbInputFait--;
+            if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
             if (NbInputFait < 0) NbInputFait = 0;
         }
 

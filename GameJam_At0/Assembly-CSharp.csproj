@@ -63,6 +63,9 @@
     <Compile Include="Assets\Jeux\JeuSport.cs" />
     <Compile Include="Assets\Jeux\JeuVoiture.cs" />
     <Compile Include="Assets\Jeux\JeuTir.cs" />
+    <Compile Include="Assets\CameraShakeFX\Scripts\TraumaInducer.cs" />
+    <Compile Include="Assets\CameraShakeFX\Scripts\StressReceiver.cs" />
+    <Compile Include="Assets\Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

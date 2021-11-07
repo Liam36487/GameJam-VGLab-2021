@@ -1576,6 +1576,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1648,6 +1649,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1ee1c62c905bb24ea7c9cf3d9d40b56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TraumaExponent: 1
+  MaximumAngularShake: {x: 5, y: 5, z: 5}
+  MaximumTranslationShake: {x: 0.75, y: 0.75, z: 0.75}
 --- !u!1 &1006458520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanvasUI: {fileID: 1969543862}
+  Players: []
 --- !u!4 &1006458522
 Transform:
   m_ObjectHideFlags: 0
@@ -1922,16 +1939,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  shakerRateGoodInput: 0.1
+  shakerRateBadInput: 0.3
   Difficultes:
   - NbInputAFaireParInput: 10
     nbTourAFaire: 3
     DureeDeVieInput: 6
+    TempsEntreLesSpawn: 1
   - NbInputAFaireParInput: 10
     nbTourAFaire: 3
     DureeDeVieInput: 5
+    TempsEntreLesSpawn: 1
   - NbInputAFaireParInput: 10
     nbTourAFaire: 3
     DureeDeVieInput: 5
+    TempsEntreLesSpawn: 1
   ListeToucheAAppuye:
   - a
   - b
@@ -2077,16 +2099,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  shakerRateGoodInput: 0.1
+  shakerRateBadInput: 0.3
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: 8a02c6b58d2728546a933c84f8afd9cc, type: 3}
   gameCanvas: {fileID: 650946246}
   ColorWhenDisable: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
   Difficultes:
   - NbInputAFaireParInput: 10
+    NbTourAFaire: 2
     DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
   - NbInputAFaireParInput: 12
+    NbTourAFaire: 2
     DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
   - NbInputAFaireParInput: 15
+    NbTourAFaire: 2
     DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
   PairsDeTouches:
   - Key1: a
     Key2: e
@@ -2486,6 +2519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1006458521}
   IsActive: 0
+  shakerRateGoodInput: 0.1
+  shakerRateBadInput: 0.3
   Difficultes:
   - NbInputAFaire: 5
     DureeDeVieInput: 3
