@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699931201766945263}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 19.38, z: 0}
+  m_LocalRotation: {x: 0.2705979, y: 0.6532815, z: -0.27059788, w: 0.6532816}
+  m_LocalPosition: {x: 1.64, y: 18.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7116920739092862106}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 90, z: 0}
 --- !u!108 &1282399783822326928
 Light:
   m_ObjectHideFlags: 0
@@ -41,12 +41,12 @@ Light:
   m_GameObject: {fileID: 699931201766945263}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2.5
-  m_Range: 10
-  m_SpotAngle: 30
+  m_Range: 7.9
+  m_SpotAngle: 132.27
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -250,7 +250,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9092963064108192043}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: d62e860c8e414904698078d15220758a, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 71faaa02684dbd244a8b2111dc5f7612, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
