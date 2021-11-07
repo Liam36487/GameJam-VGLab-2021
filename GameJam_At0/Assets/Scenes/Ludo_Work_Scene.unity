@@ -3027,13 +3027,13 @@ MonoBehaviour:
     MaxRangeSpawn: 2.5
   ListeToucheAAppuye:
   - Key: z
-    KeyTexture: {fileID: 21300000, guid: a462fd22c4c81aa4eb328cf0aa943148, type: 3}
+    KeyTexture: {fileID: -8400092884422708328, guid: 8c8d36b69ad6ac44a98d980613b3647b, type: 3}
   - Key: q
-    KeyTexture: {fileID: 21300000, guid: 4ff0c0bfd2c1c094692c403a2b864ed9, type: 3}
+    KeyTexture: {fileID: -2259660245068714478, guid: 8c8d36b69ad6ac44a98d980613b3647b, type: 3}
   - Key: s
-    KeyTexture: {fileID: 21300000, guid: b21dfb2a76dc4e74b9dc022cb7255da3, type: 3}
+    KeyTexture: {fileID: -3347566467136844543, guid: 8c8d36b69ad6ac44a98d980613b3647b, type: 3}
   - Key: d
-    KeyTexture: {fileID: 21300000, guid: 363f2b57c1d026f4599f7e7b26c97303, type: 3}
+    KeyTexture: {fileID: -7000347429703725303, guid: 8c8d36b69ad6ac44a98d980613b3647b, type: 3}
   PrefabInputToSpam: {fileID: 1769196509172746952, guid: 98ce79d664123114bad47bf81297e1b1, type: 3}
   gameCanvas: {fileID: 1808979795}
   idJeu: 4

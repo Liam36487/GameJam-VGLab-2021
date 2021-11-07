@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4233504940949886636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4633110707220205960}
+  - component: {fileID: 3305659356074619917}
+  - component: {fileID: 3731156412054559261}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4633110707220205960
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233504940949886636}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7722942112158316820}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -335, y: -250}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3305659356074619917
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233504940949886636}
+  m_CullTransparentMesh: 1
+--- !u!114 &3731156412054559261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4233504940949886636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 371a6e1f7c5f3f440852826a62e16482, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7722942110602863050
 GameObject:
   m_ObjectHideFlags: 0
@@ -68,12 +143,12 @@ MonoBehaviour:
   m_text: "Ce matin, le reveil de Matteo a sonne 5 minutes en avance.\n\n Et Matteo
     comptait bien profiter de ces 5 minutes de sommeil pour assener le coup final
     au dragon qui terrorisait la vallee.\n\n Il ne connaitra jamais la fin de son
-    reve.\n\nDans le bus ce matin, Matteo s'est retrouve coince dans les bouchons.\n\n
-    Comme il etait en retard a l'ecole, Matteo a ete prive de recre et n'a pas pu
-    jouer au foot avec ses copains.\n\n\nMais maintenant, Matteo est a la salle de
-    jeu, et il est pas la pour ramasser des paquerettes. Matteo, il veut se defouler,
-    et pour chaque moment tout naze de sa journee, il va jouer a un jeu pour l'oublier.\n\n
-    Dragon, Bus, Foot.\n\n Comme ca, dans l'ordre, eh oui."
+    reve.\n\nDans le bus ce matin, Matteo s'est retrouve coince dans les bouchons.\n\nComme
+    il etait en retard a l'ecole, Matteo a ete prive de recre et n'a pas pu jouer
+    au foot avec ses copains.\n\n\nMais maintenant, Matteo est a la salle de jeu,
+    et il est pas la pour ramasser des paquerettes. Matteo, il veut se defouler,
+    et pour chaque moment tout naze de sa journee, il va jouer a un jeu pour l'oublier.\n\nDragon,
+    Bus, Foot.\n\n Comme ca, dans l'ordre, eh oui."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
   m_sharedMaterial: {fileID: 8007653214125288375, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
@@ -172,6 +247,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7722942110602863051}
+  - {fileID: 4633110707220205960}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

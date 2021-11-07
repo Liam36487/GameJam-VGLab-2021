@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1462349159038111286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6000935399704647522}
+  - component: {fileID: 7891794143058215949}
+  - component: {fileID: 468879945861255462}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6000935399704647522
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462349159038111286}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7722942112158316820}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -355, y: -250}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7891794143058215949
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462349159038111286}
+  m_CullTransparentMesh: 1
+--- !u!114 &468879945861255462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462349159038111286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: c0d0efda6f1ce554b9e5916a683957b3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7722942110602863050
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,15 +140,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Cindy se fend d'un sourire narquois : elle est decidement la plus forte.\n\n
-    Ces jeux ne peuvent rien contre elle, elle est trop intelligente et habile pour
-    perdre.\r\n\r\nElle pourrait s'arreter la, son ego satisfait, mais...\r\nMais
-    on ne fait pas deux sessions de jeux sans en faire une troisieme. C'est comme
-    ca.\r\n\r\nDe la meme maniere que cette derniere session de jeu ne peut que se
-    faire dans l'ordre precis dans lequel elle prefere les jeux.\n\n Elle ne joue
-    pas au jeu qu'elle aime le moins : il ne necessite pas la souris. Elle termine
-    avec le jeu qu'elle aime le plus : le jeu combat !\n\n Entre les deux qui reste,
-    elle joue d'abord a celui qui n'est ni le jeu de sport, ni le jeu de tir.\r\n"
+  m_text: "Cindy se fend d'un sourire narquois : elle est decidement la plus forte.\n\nCes
+    jeux ne peuvent rien contre elle, elle est trop intelligente et habile pour perdre.\r\n\r\nElle
+    pourrait s'arreter la, son ego satisfait, mais...\r\nMais on ne fait pas deux
+    sessions de jeux sans en faire une troisieme. C'est comme ca.\r\n\r\nDe la meme
+    maniere que cette derniere session de jeu ne peut que se faire dans l'ordre precis
+    dans lequel elle prefere les jeux.\n\n Elle ne joue pas au jeu qu'elle aime le
+    moins : il ne necessite pas la souris. Elle termine avec le jeu qu'elle aime
+    le plus : le jeu combat !\n\n Entre les deux qui reste, elle joue d'abord a celui
+    qui n'est ni le jeu de sport, ni le jeu de tir.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
   m_sharedMaterial: {fileID: 8007653214125288375, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
@@ -172,6 +247,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7722942110602863051}
+  - {fileID: 6000935399704647522}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
