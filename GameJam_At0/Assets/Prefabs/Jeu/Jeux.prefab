@@ -1,0 +1,323 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &424649009173339451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424649009173339448}
+  - component: {fileID: 424649009173339449}
+  m_Layer: 0
+  m_Name: JeuTir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &424649009173339448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649009173339451}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -641.3498, y: -374.7618, z: -7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 424649010556926863}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424649009173339449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649009173339451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1909e04c6956dd4c9730bd264ffa219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  IsActive: 0
+  Difficultes:
+  - NbCibleACasser: 10
+    DureeDeVieInput: 2
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
+  - NbCibleACasser: 10
+    DureeDeVieInput: 1.7
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
+  - NbCibleACasser: 10
+    DureeDeVieInput: 1.2
+    MinRangeSpawn: 0.5
+    MaxRangeSpawn: 1.5
+  PrefabInputToSpam: {fileID: 1769196509172746952, guid: d9da3cde43e4f9643b3ed0bc1251d5ef, type: 3}
+  gameCanvas: {fileID: 0}
+  cursorTexture: {fileID: 2800000, guid: 31550acf4dfd614439c52a933afc116e, type: 3}
+  xMin: -500
+  xMax: 500
+  yMin: -250
+  yMax: 250
+--- !u!1 &424649009728820805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424649009728820803}
+  - component: {fileID: 424649009728820802}
+  m_Layer: 0
+  m_Name: JeuCombat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &424649009728820803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649009728820805}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -641.3498, y: -374.7618, z: -7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 424649010556926863}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424649009728820802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649009728820805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fdd7e1d36db4b64fb5ff25e690b2659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  IsActive: 0
+  Difficultes:
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 6
+    TempsEntreLesSpawn: 1
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 5
+    TempsEntreLesSpawn: 1
+  - NbInputAFaireParInput: 10
+    nbTourAFaire: 3
+    DureeDeVieInput: 5
+    TempsEntreLesSpawn: 1
+  ListeToucheAAppuye:
+  - a
+  - b
+  - f
+  - t
+  PrefabInputToSpam: {fileID: 1769196509172746952, guid: 9b9578c7cd4aea640aacb8039cee7f80, type: 3}
+  gameCanvas: {fileID: 0}
+  xMin: -200
+  xMax: 200
+  yMin: -200
+  yMax: 200
+--- !u!1 &424649010013287634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424649010013287635}
+  - component: {fileID: 424649010013287632}
+  m_Layer: 0
+  m_Name: JeuSport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &424649010013287635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649010013287634}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -641.3498, y: -374.7618, z: -7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 424649010556926863}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424649010013287632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649010013287634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 873083c17e7205d4daeede5ececc570d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  IsActive: 0
+  PrefabInputToSpam: {fileID: 1769196509172746952, guid: 8a02c6b58d2728546a933c84f8afd9cc, type: 3}
+  gameCanvas: {fileID: 0}
+  ColorWhenDisable: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+  Difficultes:
+  - NbInputAFaireParInput: 10
+    NbTourAFaire: 2
+    DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
+  - NbInputAFaireParInput: 12
+    NbTourAFaire: 2
+    DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
+  - NbInputAFaireParInput: 15
+    NbTourAFaire: 2
+    DureePauseQuandErreur: 0.5
+    TempsEntreLesSpawn: 1
+    DureeDeVieInput: 5
+  PairsDeTouches:
+  - Key1: a
+    Key2: e
+  - Key1: v
+    Key2: n
+  - Key1: w
+    Key2: c
+  - Key1: g
+    Key2: j
+  xMin: -300
+  xMax: 300
+  yMin: -200
+  yMax: 200
+--- !u!1 &424649010556926862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424649010556926863}
+  m_Layer: 0
+  m_Name: Jeux
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &424649010556926863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649010556926862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 641.3498, y: 374.7618, z: 7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 424649009728820803}
+  - {fileID: 424649009173339448}
+  - {fileID: 424649010013287635}
+  - {fileID: 424649010595535665}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &424649010595535664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 424649010595535665}
+  - component: {fileID: 424649010595535678}
+  m_Layer: 0
+  m_Name: JeuCourse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &424649010595535665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649010595535664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -641.3498, y: -374.7618, z: -7.696289}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 424649010556926863}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &424649010595535678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424649010595535664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57f48bc842f2a344b25f0495a405da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  IsActive: 0
+  Difficultes:
+  - NbInputAFaire: 5
+    DureeDeVieInput: 3
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 2
+    MaxRangeSpawn: 5
+  - NbInputAFaire: 6
+    DureeDeVieInput: 2.5
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 1.5
+    MaxRangeSpawn: 4
+  - NbInputAFaire: 8
+    DureeDeVieInput: 2
+    DureePauseQuandErreur: 0.5
+    MinRangeSpawn: 1.5
+    MaxRangeSpawn: 3.5
+  ListeToucheAAppuye:
+  - Key: z
+    KeyTexture: {fileID: 21300000, guid: a462fd22c4c81aa4eb328cf0aa943148, type: 3}
+  - Key: q
+    KeyTexture: {fileID: 21300000, guid: 4ff0c0bfd2c1c094692c403a2b864ed9, type: 3}
+  - Key: s
+    KeyTexture: {fileID: 21300000, guid: b21dfb2a76dc4e74b9dc022cb7255da3, type: 3}
+  - Key: d
+    KeyTexture: {fileID: 21300000, guid: 363f2b57c1d026f4599f7e7b26c97303, type: 3}
+  PrefabInputToSpam: {fileID: 1769196509172746952, guid: 98ce79d664123114bad47bf81297e1b1, type: 3}
+  gameCanvas: {fileID: 0}
+  xMin: -300
+  xMax: 300
+  yMin: -200
+  yMax: 200
