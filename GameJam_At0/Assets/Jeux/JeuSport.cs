@@ -41,6 +41,8 @@ public class JeuSport : Jeu
     private AppuiInput InputScript1;
     private AppuiInput InputScript2;
 
+    public int idJeu = 3;
+
     private List<HitBoxPair> ItemHitboxList = new List<HitBoxPair>();
 
 

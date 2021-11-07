@@ -7,14 +7,15 @@ public class JeuVoiture : Jeu
     public bool IsActive = false;
     public float shakerRateGoodInput = 0.1f;
     public float shakerRateBadInput = 0.3f;
-
+    
     public List<Difficulte> Difficultes;
     [Header("Gestion Input")]
     public List<KeyImagePair> ListeToucheAAppuye;
     public GameObject PrefabInputToSpam;
     //où afficher les inputs à faire
     public Canvas gameCanvas;
-    
+
+    public int idJeu = 4;
     
     [Header("X Spawn Range")]
     public float xMin;
