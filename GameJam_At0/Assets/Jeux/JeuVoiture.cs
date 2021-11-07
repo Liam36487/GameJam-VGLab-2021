@@ -98,6 +98,8 @@ public class JeuVoiture : Jeu
             NumDifficulteActuelle = Difficultes.Count - 1;
         else
             NumDifficulteActuelle = numDifficulte;
+
+        RandomTimer = Random.Range(Difficultes[NumDifficulteActuelle].MinRangeSpawn, Difficultes[NumDifficulteActuelle].MaxRangeSpawn);
     }
 
     IEnumerator StopTime()
