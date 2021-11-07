@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class JeuCombat : Jeu
 {
+    public AK.Wwise.Event PunchSound;
+    public AK.Wwise.Event badpunchsound;
+    public AK.Wwise.Event transitionSound;
+     
     public bool IsActive = false;
 
     public float shakerRateGoodInput = 0.2f;
@@ -61,6 +65,8 @@ public class JeuCombat : Jeu
         if(IsActive && prefabSpawned != null && Input.GetKeyDown(InputScript.KeyCode))
         {
             NbInputFait++;
+            // AkSoundEngine.PostEvent("punch", gameObject);
+            PunchSound.Post(gameObject);
             if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
             {
@@ -72,6 +78,7 @@ public class JeuCombat : Jeu
         {
             EndTour();
             NbToursFait--;
+            badpunchsound.Post(gameObject);
             if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
         }
     }
@@ -88,13 +95,14 @@ public class JeuCombat : Jeu
 
     private void SpawnPrefab()
     {
+
         Vector2 pos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
         
         prefabSpawned = Instantiate(PrefabInputToSpam, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
         prefabSpawned.transform.SetParent(gameCanvas.transform, false);
         InputScript = prefabSpawned.GetComponent<AppuiInput>();
         InputScript.SetKeyCode(ListeToucheAAppuye[Random.Range(0, ListeToucheAAppuye.Length-1)]);
-
+        transitionSound.Post(gameObject);
         StartCoroutine(AutoKillInput(prefabSpawned));
     }
     private void ResetGame()
