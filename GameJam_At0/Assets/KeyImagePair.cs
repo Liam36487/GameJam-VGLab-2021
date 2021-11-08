@@ -7,4 +7,5 @@ public class KeyImagePair
 {
     public string Key;
     public Sprite KeyTexture;
+    public AudioClip Sound;
 }

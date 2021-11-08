@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     public List<Player> Players;
 
     private List<Jeu> JeuxALancer;
-    
+
+    public AudioClip sonBouton;
+
     private int IndexJeu = 0;
     private int IndexPlayer = 0;
 
@@ -20,6 +22,9 @@ public class GameManager : MonoBehaviour
 
     GameObject PanelTextAffiche;
 
+    public GameObject CanvasFinJeu;
+    public GameObject CanvasFinJeuFinal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +32,25 @@ public class GameManager : MonoBehaviour
         PanelTextAffiche = Instantiate(Players[IndexPlayer].JeuxPref[Players[IndexPlayer].IndexSerieDeJeu].PrefabPanelPref, CanvasUI.transform);
     }
 
-    public void MovePlayer()
+    public void PlayerLeave(Player player)
     {
-        Players[0].EngageMoving(new Vector3(33, 7, 12), 0.002f);
+        if(Players.IndexOf(player) == 0)
+            Players[0].GetComponent<Animator>().Play("Base Layer.Garcon_sortie", 0, 0);
+        if (Players.IndexOf(player) == 1)
+            Players[1].GetComponent<Animator>().Play("Base Layer.Fille_sortie", 0, 0);
+        if (Players.IndexOf(player) == 2)
+            Players[2].GetComponent<Animator>().Play("Base Layer.Lilly_sortie", 0, 0);
     }
+    public void PlayerEnter(Player player)
+    {
+        if (Players.IndexOf(player) == 0)
+            Players[0].GetComponent<Animator>().Play("Base Layer.Garcon_Entree", 0, 0);
+        if (Players.IndexOf(player) == 1)
+            Players[1].GetComponent<Animator>().Play("Base Layer.Fille_Entree", 0, 0);
+        if (Players.IndexOf(player) == 2)
+            Players[2].GetComponent<Animator>().Play("Base Layer.Lilly_Entree", 0, 0);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -41,6 +61,17 @@ public class GameManager : MonoBehaviour
     public void EndGame(Jeu jeu)
     {
         jeu.gameObject.SetActive(false);
+        StartCoroutine(WaitEndGame(jeu));
+    }
+
+    private IEnumerator WaitEndGame(Jeu jeu)
+    {
+        CanvasFinJeu.SetActive(true);
+        CanvasFinJeu.GetComponent<Animation>().Play();
+
+        yield return new WaitForSeconds(1.5f);
+
+        CanvasFinJeu.SetActive(false);
         IndexJeu++;
         if (IndexJeu >= JeuxALancer.Count)
         {
@@ -52,6 +83,7 @@ public class GameManager : MonoBehaviour
         }
         else
             StartJeu(JeuxALancer[IndexJeu]);
+
     }
 
     public void StartJeu(Jeu jeu)
@@ -76,7 +108,6 @@ public class GameManager : MonoBehaviour
         {
             if (CptGoodGame != 3)
             {
-                //Refaire
                 IndexJeu = 0;
                 IndexJeuAVerif = 0;
                 CptGoodGame = 0;
@@ -99,24 +130,30 @@ public class GameManager : MonoBehaviour
 
     private void ChangePlayer()
     {
+        Destroy(PanelTextAffiche);
+        PlayerLeave(Players[IndexPlayer]);
         IndexPlayer++;
         if (IndexPlayer >= Players.Count)
         {
             if (Players[IndexPlayer - 1].IndexSerieDeJeu >= 3)
             {
-                //Ecran final
+                CanvasFinJeuFinal.SetActive(true);
                 print("FIN DU GAMEGAME");
             }
             else
             {
                 IndexPlayer = 0;
                 ShowChoixJeux();
+                PanelTextAffiche = Instantiate(Players[IndexPlayer].JeuxPref[Players[IndexPlayer].IndexSerieDeJeu].PrefabPanelPref, CanvasUI.transform);
+                PlayerEnter(Players[IndexPlayer]);
             }
 
         }
         else
         {
             ShowChoixJeux();
+            PanelTextAffiche = Instantiate(Players[IndexPlayer].JeuxPref[Players[IndexPlayer].IndexSerieDeJeu].PrefabPanelPref, CanvasUI.transform);
+            PlayerEnter(Players[IndexPlayer]);
         }
     }
 
@@ -132,5 +169,10 @@ public class GameManager : MonoBehaviour
     public void SetDifficulte(int i)
     {
         IndexJeu = i;
+    }
+
+    public void PlaySoundButton()
+    {
+        GetComponent<AudioSource>().PlayOneShot(sonBouton);
     }
 }
