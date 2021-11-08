@@ -9,6 +9,11 @@ public class JeuCombat : Jeu
     public float shakerRateGoodInput = 0.2f;
     public float shakerRateBadInput = 0.5f;
 
+    public AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip badHitSound;
+    public AudioClip SpawnSound;
+
     public int idJeu = 1;
 
     public List<Difficulte> Difficultes;
@@ -62,6 +67,7 @@ public class JeuCombat : Jeu
         if(IsActive && prefabSpawned != null && Input.GetKeyDown(InputScript.KeyCode))
         {
             NbInputFait++;
+            audioSource.PlayOneShot(hitSound);
             if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaireParInput)
             {
@@ -73,6 +79,7 @@ public class JeuCombat : Jeu
         {
             EndTour();
             NbToursFait--;
+            audioSource.PlayOneShot(badHitSound);
             if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
         }
     }
@@ -89,6 +96,7 @@ public class JeuCombat : Jeu
 
     private void SpawnPrefab()
     {
+        audioSource.PlayOneShot(SpawnSound);
         Vector2 pos = new Vector2(Random.Range(xMin, xMax), Random.Range(yMin, yMax));
         
         prefabSpawned = Instantiate(PrefabInputToSpam, new Vector3(pos.x, pos.y, 0), Quaternion.identity);

@@ -140,16 +140,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tous les jours, Lilly elle doit faire semblant d'etre la plus mignonne
-    et adorable petite fille du monde.\n\n Mais ce qu'elle cache a tout prix aux
-    yeux de papa, maman et les copain, c'est que Lilly est en fait un monstre des
-    Enfers venu sur terre pour terroriser la population.\r\n\nEnfin pas vraiment,
-    mais Lilly elle fait semblant pour rigoler.\r\nCe soir, a la salle d'arcade,
-    elle compte bien tout defoncer.\r\n\r\nPour defoncer un jeu, Lilly a sa propre
-    technique : taper sur des touches et ne pas utiliser la souris.\n\n Plus on doit
-    fracasser les touches plus elle aime ca.\n\nEt plus elle aime ca, plus tard elle
-    y joue. Parce que l'ordre, c'est important meme quand on aspire au chaos primordial
-    !\r\n"
+  m_text: "La serenite envahi Matteo, il s'est enfin purge de la colere qui grandissait
+    en lui. Il va pouvoir rentrer chez lui.\r\n\nIl en a presque oublie a quel point
+    ca l'a enerve d'etre en retard ce matin.\n\nAlors qu'il avait ete reveille en
+    avance.\r\n\nTout ca a cause de cette @#\xA8%! de reveil de co___t a la *** !\r\n\r\nEn
+    fait Matteo est toujours en colere et quand il est en colere, il a besoin de
+    se defouler sur une machine.\n\n C'est reparti pour une session de jeu, la derniere,
+    c'est promis !\r\n\r\nCette fois ci, Matteo va jouer selon les jeux que ses insultes
+    demandent. Dans le bon ordre !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
   m_sharedMaterial: {fileID: 8007653214125288375, guid: ba73b9584531b184abe939bdef2d8e2a, type: 2}
@@ -176,7 +174,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.35
+  m_fontSize: 22.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

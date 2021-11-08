@@ -6,6 +6,9 @@ public class JeuTir : Jeu
 {
     public bool IsActive = false;
 
+    public AudioSource audioSource;
+    public AudioClip shotSound;
+
     public List<Sprite> ListSprites;
     public List<Difficulte> Difficultes;
     public GameObject PrefabInputToSpam;
@@ -62,6 +65,7 @@ public class JeuTir : Jeu
     {
         if(IsActive && Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(shotSound);
             if (NbCiblesCassees >= Difficultes[NumDifficulteActuelle].NbCibleACasser - 1)
             {
                 ResetGame();

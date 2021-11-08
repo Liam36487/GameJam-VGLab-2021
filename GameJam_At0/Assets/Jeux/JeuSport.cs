@@ -6,6 +6,12 @@ public class JeuSport : Jeu
 {
     public bool IsActive = false;
 
+    public AudioSource AudioSource;
+    public AudioClip hitSound;
+    public AudioClip hitSound2;
+    public AudioClip badHitSound;
+    public AudioClip TransSound;
+
     public float shakerRateGoodInput = 0.1f;
     public float shakerRateBadInput = 0.3f;
 
@@ -91,6 +97,7 @@ public class JeuSport : Jeu
             if (Input.GetKeyDown(InputScript1.KeyCode))
             {
                 Nb1erInputFait++;
+                AudioSource.PlayOneShot(hitSound);
                 if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                 Status = 1;
                 InputScript1.Recolor(ColorWhenDisable);
@@ -100,6 +107,7 @@ public class JeuSport : Jeu
             else if (Input.GetKeyDown(InputScript2.KeyCode))
             {
                 Nb2emeInputFait++;
+                AudioSource.PlayOneShot(hitSound2);
                 if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                 Status = 2;
                 InputScript2.Recolor(ColorWhenDisable);
@@ -119,6 +127,7 @@ public class JeuSport : Jeu
                     if (PrefabSpawned1 != null && PrefabSpawned2 != null && Nb1erInputFait == Nb2emeInputFait)
                     {
                         Nb1erInputFait++;
+                        AudioSource.PlayOneShot(hitSound);
                         if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                         if (InputScript1 != null)
                             InputScript1.Recolor(ColorWhenDisable);
@@ -139,6 +148,7 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait < Nb2emeInputFait)
                     {
                         Nb1erInputFait++;
+                        AudioSource.PlayOneShot(hitSound);
                         if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                         if (InputScript1 != null)
                             InputScript1.Recolor(ColorWhenDisable);
@@ -164,6 +174,7 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait > Nb2emeInputFait)
                     {
                         Nb2emeInputFait++;
+                        AudioSource.PlayOneShot(hitSound2);
                         if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
 
                         if (InputScript2 != null)
@@ -185,6 +196,7 @@ public class JeuSport : Jeu
                     if (Nb1erInputFait == Nb2emeInputFait)
                     {
                         Nb2emeInputFait++;
+                        AudioSource.PlayOneShot(hitSound2);
                         if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
                         if (InputScript2 != null)
                             InputScript2.Recolor(ColorWhenDisable);
@@ -255,6 +267,7 @@ public class JeuSport : Jeu
      IEnumerator StopGame(AppuiInput inputThatMustBeWhite)
     {
         IsActive = false;
+        AudioSource.PlayOneShot(badHitSound);
         if (Shaker != null) Shaker.InduceStress(shakerRateBadInput); 
 
         if (InputScript1 != null)
@@ -284,6 +297,7 @@ public class JeuSport : Jeu
 
     private void SpawnPrefab()
     {
+        AudioSource.PlayOneShot(TransSound);
         RectTransform rectT = PrefabInputToSpam.GetComponent<RectTransform>();
 
         int IdPairChoisie = Random.Range(0, PairsDeTouches.Count - 1);

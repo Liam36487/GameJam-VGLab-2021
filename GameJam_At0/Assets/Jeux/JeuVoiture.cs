@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class JeuVoiture : Jeu
 {
+    public AudioSource sourceBase;
+
+    public AudioClip crashsound;
+
+
     public bool IsActive = false;
     public float shakerRateGoodInput = 0.1f;
     public float shakerRateBadInput = 0.3f;
@@ -66,6 +71,7 @@ public class JeuVoiture : Jeu
         {
             print("keypressed " + Input.GetKeyDown(InputScript.KeyCode));
             NbInputFait++;
+            sourceBase.PlayOneShot(InputScript.Clip);
             if (Shaker != null) Shaker.InduceStress(shakerRateGoodInput);
             Destroy(prefabSpawned);
             if (NbInputFait >= Difficultes[NumDifficulteActuelle].NbInputAFaire)
@@ -79,6 +85,7 @@ public class JeuVoiture : Jeu
         {
             //Jouer son accident
             NbInputFait--;
+            sourceBase.PlayOneShot(crashsound);
             if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
             if (NbInputFait < 0) NbInputFait = 0;
             Destroy(prefabSpawned);
@@ -88,6 +95,7 @@ public class JeuVoiture : Jeu
         {
             //Jouer son accident
             NbInputFait--;
+            sourceBase.PlayOneShot(crashsound);
             if (Shaker != null) Shaker.InduceStress(shakerRateBadInput);
             if (NbInputFait < 0) NbInputFait = 0;
         }
@@ -130,8 +138,9 @@ public class JeuVoiture : Jeu
         prefabSpawned = Instantiate(PrefabInputToSpam, new Vector3(pos.x, pos.y, 0), Quaternion.identity);
         prefabSpawned.transform.SetParent(gameCanvas.transform, false);
         InputScript = prefabSpawned.GetComponent<AppuiInput>();
-        InputScript.SetImageKeyCode(ListeToucheAAppuye[Random.Range(0, ListeToucheAAppuye.Count-1)]);
-
+        int rand = Random.Range(0, ListeToucheAAppuye.Count - 1);
+        InputScript.SetImageKeyCode(ListeToucheAAppuye[rand]);
+        InputScript.Clip = ListeToucheAAppuye[rand].Sound;
 
         StartCoroutine(AutoKillInput(prefabSpawned));
     }
